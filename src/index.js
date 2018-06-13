@@ -1,9 +1,6 @@
-import React, {Component} from 'react'
+// @flow
+import Toaster from "./Toast";
 
-export default class extends Component {
-  render() {
-    return <div>
-      <h2>Welcome to React components</h2>
-    </div>
-  }
-}
+const toaster = new Toaster();
+
+export default toaster;

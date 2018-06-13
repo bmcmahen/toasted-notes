@@ -1,0 +1,48 @@
+.Toaster__alert {
+  background-color: white;
+  overflow: hidden;
+  max-width: 650px;
+  position: relative;
+  border-radius: 4px;
+
+  display: flex;
+  padding: 16px;
+  padding-right: 48px;
+  box-shadow: rgba(67, 90, 111, 0.416) 0px 0px 1px,
+    rgba(67, 90, 111, 0.3) 0px 2px 4px -2px;
+}
+
+.Toaster__alert:before {
+  content: "";
+  width: 4px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.Toaster__alert_text {
+  font-weight: 600;
+  color: rgb(67, 90, 111);
+  font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  font-size: 14px;
+}
+
+.Toaster__alert_close {
+  padding: 16px;
+
+  cursor: pointer;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+  -webkit-appearance: none;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.5;
+}
