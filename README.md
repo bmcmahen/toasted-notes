@@ -23,6 +23,7 @@ yarn add toasted-notes
 
 ```
 import toaster from 'toasted-notes';
+import 'toasted-notes/main.css';
 
 const HelloWorld = () => (
   <button onClick={() => {
@@ -33,4 +34,32 @@ const HelloWorld = () => (
     Say hello
   </button>
 )
+```
+
+# API
+
+The notify function accepts either a string, a react node, or a render callback.
+
+```
+// using a string
+toaster.notify('With a simple string')
+
+// using jsx
+toaster.notify(<div>Hi there</div>)
+
+// using a render callback
+toaster.notify(({ onClose, id }) => (
+  <div>
+    <span>My custom toaster</span>
+    <button onClick={onClose}>Close me please</button>
+  </div>
+))
+```
+
+It also accepts options.
+
+```
+toaster.notify('Hello world', {
+  duration: 0 // This notification will not automatically close
+})
 ```

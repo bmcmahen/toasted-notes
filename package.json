@@ -1,7 +1,7 @@
 {
-  "name": "react-toast",
+  "name": "toasted-notes",
   "version": "1.0.0",
-  "description": "react-toast React component",
+  "description": "Toast notifications for react",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -11,7 +11,7 @@
     "umd"
   ],
   "scripts": {
-    "build": "nwb build-react-component",
+    "build": "nwb build-react-component --copy-files",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
     "test": "nwb test-react",
@@ -23,7 +23,8 @@
     "react-transition-group": "^2.3.1"
   },
   "peerDependencies": {
-    "react": "16.x"
+    "react": "16.x",
+    "react-dom": "^16.4.1"
   },
   "devDependencies": {
     "flow-bin": "^0.74.0",
@@ -31,8 +32,8 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
   },
-  "author": "",
-  "homepage": "",
+  "author": "Ben McMahen",
+  "homepage": "https://github.com/bmcmahen/toasted-notes",
   "license": "MIT",
   "repository": "",
   "keywords": [
