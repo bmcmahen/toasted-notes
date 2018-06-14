@@ -48,9 +48,10 @@ toaster.notify('With a simple string')
 toaster.notify(<div>Hi there</div>)
 
 // using a render callback
+// assign the id attribute to the primary description for accessibility purposes
 toaster.notify(({ onClose, id }) => (
   <div>
-    <span>My custom toaster</span>
+    <span id={id}>My custom toaster</span>
     <button onClick={onClose}>Close me please</button>
   </div>
 ))
