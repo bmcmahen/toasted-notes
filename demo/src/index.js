@@ -42,11 +42,21 @@ toast.notify("I will not disappear", {
             <pre>
               <code>
                 {`
-toast.notify(
-  <div>
-    <h3>Custom react node</h3>
-  </div>
-);`}
+
+  toast.notify(
+    ({ onClose }) => {
+      return (
+        <div>
+          Custom render <button onClick={onClose}>close</button>
+        </div>
+      );
+    },
+    {
+      duration: 0
+    }
+  );
+  
+  `}
               </code>
             </pre>
           </div>
@@ -58,21 +68,11 @@ toast.notify(
             <pre>
               <code>
                 {`
-
 toast.notify(
-  ({ onClose }) => {
-    return (
-      <div>
-        Custom render <button onClick={onClose}>close</button>
-      </div>
-    );
-  },
-  {
-    duration: 0
-  }
-);
-
-`}
+  <div>
+    <h3>Custom react node</h3>
+  </div>
+);`}
               </code>
             </pre>
           </div>
