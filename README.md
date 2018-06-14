@@ -4,7 +4,7 @@
 [![npm package][npm-badge]][npm]
 [![Coveralls][coveralls-badge]][coveralls]
 
-Simple react toast notifications.
+Simple react toast notifications. [View demo](https://bmcmahen.github.io/toasted-notes/)
 
 Install:
 
@@ -23,7 +23,7 @@ yarn add toasted-notes
 
 ```
 import toaster from 'toasted-notes';
-import 'toasted-notes/main.css';
+import 'toasted-notes/umd/main.css';
 
 const HelloWorld = () => (
   <button onClick={() => {
