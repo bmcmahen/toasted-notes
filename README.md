@@ -4,7 +4,7 @@
 [![npm package][npm-badge]][npm]
 [![Coveralls][coveralls-badge]][coveralls]
 
-Simple react toast notifications. [View demo](https://bmcmahen.github.io/toasted-notes/)
+A super simple but flexible implementation of toast style notifications for React, initially based on the excellent implementation found in [Evergreen](https://github.com/segmentio/evergreen). [View the demo](https://bmcmahen.github.io/toasted-notes/)
 
 Install:
 
