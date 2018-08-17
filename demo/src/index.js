@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import "./demo.css";
-import toast from "../../src";
+import toast, { Position } from "../../src";
 
 class Demo extends Component {
   render() {
@@ -87,7 +87,8 @@ toast.notify(
 
   noTimeout = () => {
     toast.notify("I will not disappear", {
-      duration: 0
+      duration: 0,
+      position: "bottom-left"
     });
   };
 

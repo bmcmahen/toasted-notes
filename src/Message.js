@@ -12,6 +12,14 @@ type MessageCallback = {
 
 export type MessageType = "default" | "success" | "error";
 
+export type PositionsType =
+  | "top"
+  | "top-left"
+  | "top-right"
+  | "bottom-left"
+  | "bottom"
+  | "bottom-right";
+
 export type MessageProp = React.Node | (MessageCallback => React.Node) | string;
 
 export type MessageOptions = {
@@ -19,7 +27,8 @@ export type MessageOptions = {
   duration?: number,
   type: MessageType,
   onRequestRemove: () => void,
-  showing: boolean
+  showing: boolean,
+  position: PositionsType
 };
 
 type Props = {

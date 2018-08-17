@@ -1,12 +1,20 @@
 // @flow
 import * as React from "react";
 import Message from "./Message";
+import Positions from "./Positions";
 import "./ToastManager.css";
-import type { MessageProp, MessageOptions, MessageType } from "./Message";
+
+import type {
+  PositionsType,
+  MessageProp,
+  MessageOptions,
+  MessageType
+} from "./Message";
 
 type Options = {
   type: string,
-  duration?: number
+  duration?: number,
+  position: PositionsType
 };
 
 type Props = {
@@ -15,7 +23,8 @@ type Props = {
 
 export type MessageOptionalOptions = {
   type?: MessageType,
-  duration?: number
+  duration?: number,
+  position?: PositionsType
 };
 
 type ToastArgs = {
@@ -24,14 +33,24 @@ type ToastArgs = {
 };
 
 type State = {
-  toasts: Array<ToastArgs>
+  top: Array<ToastArgs>,
+  "top-left": Array<ToastArgs>,
+  "top-right": Array<ToastArgs>,
+  "bottom-left": Array<ToastArgs>,
+  bottom: Array<ToastArgs>,
+  "bottom-right": Array<ToastArgs>
 };
 
 export default class ToastManager extends React.Component<Props, State> {
   static idCounter = 0;
 
   state = {
-    toasts: []
+    "top-left": [],
+    top: [],
+    "top-right": [],
+    "bottom-left": [],
+    bottom: [],
+    "bottom-right": []
   };
 
   constructor(props: Props) {
@@ -41,9 +60,18 @@ export default class ToastManager extends React.Component<Props, State> {
 
   notify = (message: MessageProp, options: MessageOptionalOptions) => {
     const toast = this.createToastState(message, options);
-    // prepend our toast newest toast
+    const { position } = toast;
+
+    // prepend the toast for toasts positioned at the top of
+    // the screen, otherwise append it.
+    const isTop = position.includes("top");
+
     this.setState(prev => {
-      return { toasts: [toast, ...prev.toasts] };
+      return {
+        [position]: isTop
+          ? [toast, ...prev[position]]
+          : [...prev[position], toast]
+      };
     });
   };
 
@@ -53,22 +81,30 @@ export default class ToastManager extends React.Component<Props, State> {
   ) => {
     const id = ++ToastManager.idCounter;
 
+    // a bit messy, but object.position returns a number because
+    // it's a method argument.
+    const position =
+      options.hasOwnProperty("position") && typeof options.position === "string"
+        ? options.position
+        : "top";
+
     return {
       id,
       message,
+      position,
       showing: true,
       duration:
         typeof options.duration === "undefined" ? 5000 : options.duration,
-      onRequestRemove: () => this.closeToast(id),
+      onRequestRemove: () => this.closeToast(id, position),
       type: options.type
     };
   };
 
   // set toast to not showing, which triggers an animation
-  closeToast = (id: number) => {
+  closeToast = (id: number, position: PositionsType) => {
     this.setState(prev => {
       return {
-        toasts: prev.toasts.map(toast => {
+        [position]: prev[position].map(toast => {
           if (toast.id === id) {
             return {
               ...toast,
@@ -82,23 +118,26 @@ export default class ToastManager extends React.Component<Props, State> {
   };
 
   // actually fully remove the toast
-  removeToast = (id: number) => {
+  removeToast = (id: number, position: PositionsType) => {
     this.setState(prev => {
-      return { toasts: prev.toasts.filter(toast => toast.id !== id) };
+      return { [position]: prev[position].filter(toast => toast.id !== id) };
     });
   };
 
   render() {
-    const { toasts } = this.state;
-    return (
-      <span
-        className="Toaster__manager"
-        style={{ pointerEvents: toasts.length > 0 ? "auto" : "none" }}
-      >
-        {toasts.map((toast: ToastArgs) => {
-          return <Message key={toast.id} {...toast} />;
-        })}
-      </span>
-    );
+    return Object.keys(this.state).map(position => {
+      const toasts = this.state[position];
+      return (
+        <span
+          key={position}
+          className={"Toaster__manager-" + position}
+          style={{ pointerEvents: toasts.length > 0 ? "auto" : "none" }}
+        >
+          {toasts.map((toast: ToastArgs) => {
+            return <Message key={toast.id} {...toast} />;
+          })}
+        </span>
+      );
+    });
   }
 }
