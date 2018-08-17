@@ -6,27 +6,74 @@ import toast, { Position } from "../../src";
 class Demo extends Component {
   render() {
     return (
-      <div>
+      <div className="Demo">
         <h1>Toasted Notes</h1>
+        <p>
+          Simple and flexible toast notifications for your React application. To
+          get started, install toasted notes using Yarn or NPM.
+        </p>
+
+        <pre className="Command">
+          <code>yarn install toasted-notes</code>
+        </pre>
+
+        <p>
+          Learn more on{" "}
+          <a href="https://github.com/bmcmahen/toasted-notes">Github</a>.
+        </p>
+        <h2>Examples</h2>
         <div className="Example">
-          <button onClick={this.show}>Basic example</button>
+          <h3>A basic example</h3>
           <div>
             <pre>
               <code>
                 {`
+import toast from 'toasted-notes';
+import 'toasted-notes/umd/main.css';
+
 toast.notify("Irure est ea deserunt labore ullamco est nisi labore in.");
     `}
               </code>
             </pre>
           </div>
+          <button onClick={this.show}>Show notification</button>
         </div>
 
         <div className="Example">
-          <button onClick={this.noTimeout}>Without a duration timeout</button>
+          <h3>Using different positions</h3>
           <div>
             <pre>
               <code>
                 {`
+import toast, { Position } from 'toasted-notes';
+import 'toasted-notes/umd/main.css';
+
+// You can use: 
+// 'top-left', 'top', 'top-right'
+// 'bottom-left', 'bottom', and 'bottom-right'
+
+Object.values(Position).forEach(position => {
+  toast.notify("Using position " + position, {
+    position
+  });
+});
+              `}
+              </code>
+            </pre>
+          </div>
+          <button onClick={this.showPositions}>Show notifications</button>
+        </div>
+
+        <div className="Example">
+          <h3>Without a duration timeout</h3>
+
+          <div>
+            <pre>
+              <code>
+                {`
+import toast from 'toasted-notes';
+import 'toasted-notes/umd/main.css';
+
 toast.notify("I will not disappear", {
   duration: 0
 });
@@ -34,40 +81,48 @@ toast.notify("I will not disappear", {
               </code>
             </pre>
           </div>
+          <button onClick={this.noTimeout}>Show notification</button>
         </div>
 
         <div className="Example">
-          <button onClick={this.withRender}>Custom render node</button>
+          <h3>Using a custom render function</h3>
+
           <div>
             <pre>
               <code>
                 {`
+import toast from 'toasted-notes';
+import 'toasted-notes/umd/main.css';
 
-  toast.notify(
-    ({ onClose }) => {
-      return (
-        <div>
-          Custom render <button onClick={onClose}>close</button>
-        </div>
-      );
-    },
-    {
-      duration: 0
-    }
-  );
-  
+toast.notify(
+  ({ onClose }) => {
+    return (
+      <div>
+        Custom render <button onClick={onClose}>close</button>
+      </div>
+    );
+  },
+  {
+    duration: 0
+  }
+);
   `}
               </code>
             </pre>
           </div>
+          <button onClick={this.withRender}>Show notification</button>
         </div>
 
         <div className="Example">
-          <button onClick={this.withReactNode}>With react node</button>
+          <h3>Using a react node</h3>
+
           <div>
             <pre>
               <code>
                 {`
+import toast from 'toasted-notes';
+import 'toasted-notes/umd/main.css';
+
 toast.notify(
   <div>
     <h3>Custom react node</h3>
@@ -76,6 +131,7 @@ toast.notify(
               </code>
             </pre>
           </div>
+          <button onClick={this.withReactNode}>Show notification</button>
         </div>
       </div>
     );
@@ -88,7 +144,15 @@ toast.notify(
   noTimeout = () => {
     toast.notify("I will not disappear", {
       duration: 0,
-      position: "bottom-left"
+      position: "bottom-right"
+    });
+  };
+
+  showPositions = () => {
+    Object.values(Position).forEach(position => {
+      toast.notify("Using position " + position, {
+        position
+      });
     });
   };
 

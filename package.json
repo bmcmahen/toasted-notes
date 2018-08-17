@@ -29,6 +29,7 @@
     "react-dom": "^16.4.1"
   },
   "devDependencies": {
+    "evergreen": "^0.3.2",
     "flow-bin": "^0.74.0",
     "gh-pages": "^1.2.0",
     "nwb": "0.21.x",

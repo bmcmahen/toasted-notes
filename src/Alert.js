@@ -4,7 +4,7 @@ import "./Alert.css";
 
 type Props = {
   id: string,
-  title: string | React.Node,
+  title: React.Node | (({ onClose: void }) => React.Node) | string,
   onClose: () => void
 };
 

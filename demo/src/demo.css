@@ -1,3 +1,69 @@
+body {
+  background-color: white;
+  color: black;
+  text-align: left;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+}
+
+.Demo {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h2 {
+  margin-top: 2rem;
+  text-align: left;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 2rem;
+}
+
+h1 {
+}
+
+p {
+  line-height: calc(16 / 9 * 1em);
+}
+
+a.button {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 3px;
+  border: 0px;
+  -webkit-appearance: none;
+  color: rgb(187, 178, 118);
+  background-color: rgb(71, 80, 140);
+}
+
+pre {
+  padding: 0 1rem;
+  background: whitesmoke;
+  border-radius: 1rem;
+  text-align: left;
+}
+
+pre.Command {
+  padding: 1rem;
+  text-align: left;
+}
+
 .Example {
-  padding: 32px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.Example:last-child {
+  border-bottom: none;
+}
+
+code {
+  font-family: Monaco, Inconsolata, Fira Mono, Droid Sans Mono, Source Code Pro,
+    monospace;
+  line-height: calc(16 / 9 * 1em);
+  font-size: 12px;
 }
