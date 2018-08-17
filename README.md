@@ -61,6 +61,7 @@ It also accepts options.
 
 ```
 toaster.notify('Hello world', {
+  position: 'bottom-left', // top-left, top, top-right, bottom-left, bottom, bottom-right
   duration: 0 // This notification will not automatically close
 })
 ```
