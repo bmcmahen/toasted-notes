@@ -27,6 +27,7 @@ export type MessageOptions = {
   duration?: number,
   type: MessageType,
   onRequestRemove: () => void,
+  onRequestClose: () => void,
   showing: boolean,
   position: PositionsType
 };
@@ -72,7 +73,7 @@ export default class Message extends React.Component<Props, State> {
         unmountOnExit
         timeout={this.props.animationDuration}
         in={this.getVisibility()}
-        onExisted={this.props.onRequestRemove}
+        onExited={this.props.onRequestRemove}
       >
         {state => {
           return (
@@ -111,7 +112,9 @@ export default class Message extends React.Component<Props, State> {
       typeof this.props.message === "string" ||
       React.isValidElement(this.props.message)
     ) {
-      return <Alert id={id} title={this.props.message} onClose={this.close} />;
+      return (
+        <Alert id={id} title={this.props.message} onClose={this.closeTimer} />
+      );
     }
 
     if (typeof this.props.message === "function") {
@@ -125,9 +128,7 @@ export default class Message extends React.Component<Props, State> {
   };
 
   close = () => {
-    if (this.props.onRequestRemove) {
-      this.props.onRequestRemove();
-    }
+    this.props.onRequestClose();
   };
 
   componentDidMount() {

@@ -95,7 +95,8 @@ export default class ToastManager extends React.Component<Props, State> {
       showing: true,
       duration:
         typeof options.duration === "undefined" ? 5000 : options.duration,
-      onRequestRemove: () => this.closeToast(id, position),
+      onRequestClose: () => this.closeToast(id, position),
+      onRequestRemove: () => this.removeToast(id, position),
       type: options.type
     };
   };
