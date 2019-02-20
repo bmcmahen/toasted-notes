@@ -1,44 +1,34 @@
-// @flow
 import * as React from "react";
-import Message from "./Message";
-import Positions from "./Positions";
+import {
+  Message,
+  PositionsType,
+  MessageType,
+  MessageOptions,
+  MessageProp
+} from "./Message";
 import "./ToastManager.css";
 
-import type {
-  PositionsType,
-  MessageProp,
-  MessageOptions,
-  MessageType
-} from "./Message";
+interface Props {
+  notify: (fn: Function) => void;
+}
 
-type Options = {
-  type: string,
-  duration?: number,
-  position: PositionsType
-};
+export interface MessageOptionalOptions {
+  type?: MessageType;
+  duration?: number | null;
+  position?: PositionsType;
+}
 
-type Props = {
-  notify: Function => void
-};
-
-export type MessageOptionalOptions = {
-  type?: MessageType,
-  duration?: number,
-  position?: PositionsType
-};
-
-type ToastArgs = {
-  message: MessageProp,
-  ...MessageOptions
-};
+interface ToastArgs extends MessageOptions {
+  message: MessageProp;
+}
 
 type State = {
-  top: Array<ToastArgs>,
-  "top-left": Array<ToastArgs>,
-  "top-right": Array<ToastArgs>,
-  "bottom-left": Array<ToastArgs>,
-  bottom: Array<ToastArgs>,
-  "bottom-right": Array<ToastArgs>
+  top: Array<ToastArgs>;
+  "top-left": Array<ToastArgs>;
+  "top-right": Array<ToastArgs>;
+  "bottom-left": Array<ToastArgs>;
+  bottom: Array<ToastArgs>;
+  "bottom-right": Array<ToastArgs>;
 };
 
 export default class ToastManager extends React.Component<Props, State> {
@@ -68,6 +58,7 @@ export default class ToastManager extends React.Component<Props, State> {
 
     this.setState(prev => {
       return {
+        ...prev,
         [position]: isTop
           ? [toast, ...prev[position]]
           : [...prev[position], toast]
@@ -95,39 +86,25 @@ export default class ToastManager extends React.Component<Props, State> {
       showing: true,
       duration:
         typeof options.duration === "undefined" ? 5000 : options.duration,
-      onRequestClose: () => this.closeToast(id, position),
-      onRequestRemove: () => this.removeToast(id, position),
+      onRequestRemove: () => this.removeToast(String(id), position),
       type: options.type
     };
   };
 
-  // set toast to not showing, which triggers an animation
-  closeToast = (id: number, position: PositionsType) => {
+  // actually fully remove the toast
+  removeToast = (id: string, position: PositionsType) => {
     this.setState(prev => {
       return {
-        [position]: prev[position].map(toast => {
-          if (toast.id === id) {
-            return {
-              ...toast,
-              showing: false
-            };
-          }
-          return toast;
-        })
+        ...prev,
+        [position]: prev[position].filter(toast => toast.id !== id)
       };
-    });
-  };
-
-  // actually fully remove the toast
-  removeToast = (id: number, position: PositionsType) => {
-    this.setState(prev => {
-      return { [position]: prev[position].filter(toast => toast.id !== id) };
     });
   };
 
   render() {
     return Object.keys(this.state).map(position => {
-      const toasts = this.state[position];
+      const p = position as keyof State;
+      const toasts = this.state[p];
       return (
         <span
           key={position}
@@ -135,7 +112,7 @@ export default class ToastManager extends React.Component<Props, State> {
           style={{ pointerEvents: toasts.length > 0 ? "auto" : "none" }}
         >
           {toasts.map((toast: ToastArgs) => {
-            return <Message key={toast.id} {...toast} />;
+            return <Message position={p} key={toast.id} {...toast} />;
           })}
         </span>
       );

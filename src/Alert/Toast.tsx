@@ -1,16 +1,14 @@
-// @flow
+import * as ReactDOM from "react-dom";
 import * as React from "react";
-import ReactDOM from "react-dom";
-import ToastManager from "./ToastManager";
-import type { MessageProp } from "./Message";
-import type { MessageOptionalOptions } from "./ToastManager";
+import ToastManager, { MessageOptionalOptions } from "./ToastManager";
+import { MessageProp } from "./Message";
 
 const isBrowser =
   typeof window !== "undefined" && typeof window.document !== "undefined";
 const PORTAL_ID = "react-toast";
 
 class Toaster {
-  createNotification: Function;
+  createNotification?: Function;
 
   constructor() {
     if (!isBrowser) {
@@ -40,7 +38,9 @@ class Toaster {
   };
 
   notify = (message: MessageProp, options: MessageOptionalOptions = {}) => {
-    this.createNotification(message, options);
+    if (this.createNotification) {
+      this.createNotification(message, options);
+    }
   };
 }
 

@@ -12,29 +12,33 @@
     "umd"
   ],
   "scripts": {
-    "build": "nwb build-react-component --copy-files",
-    "clean": "nwb clean-module && nwb clean-demo",
-    "start": "nwb serve-react-demo",
-    "test": "nwb test-react",
-    "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server",
-    "flow": "flow",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
     "deploy": "gh-pages -d demo/dist"
   },
   "dependencies": {
-    "react-transition-group": "^2.3.1"
+    "@reach/alert": "^0.1.2",
+    "@types/prismjs": "^1.9.1",
+    "react-spring": "^8.0.7"
   },
   "peerDependencies": {
-    "react": "16.x",
-    "react-dom": "^16.4.1"
+    "react": "16.8.2",
+    "react-dom": "16.8.2"
   },
   "devDependencies": {
-    "evergreen": "^0.3.2",
-    "flow-bin": "^0.74.0",
+    "@emotion/core": "^10.0.7",
+    "@types/react": "^16.8.4",
+    "@types/react-dom": "^16.8.2",
     "gh-pages": "^1.2.0",
-    "nwb": "0.21.x",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "prismjs": "^1.15.0",
+    "react": "16.8.2",
+    "react-dom": "16.8.2",
+    "react-scripts": "^2.1.5",
+    "rollup": "^1.2.2",
+    "rollup-plugin-typescript2": "^0.19.2",
+    "typescript": "^3.3.3"
   },
   "author": "Ben McMahen",
   "homepage": "https://github.com/bmcmahen/toasted-notes",
@@ -42,5 +46,11 @@
   "repository": "",
   "keywords": [
     "react-component"
+  ],
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
   ]
 }

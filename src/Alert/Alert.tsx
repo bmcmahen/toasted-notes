@@ -2,11 +2,11 @@
 import * as React from "react";
 import "./Alert.css";
 
-type Props = {
-  id: string,
-  title: React.Node | (({ onClose: void }) => React.Node) | string,
-  onClose: () => void
-};
+interface Props {
+  id: string;
+  title: React.ReactNode | string;
+  onClose: () => void;
+}
 
 const Alert = ({ id, title, onClose }: Props) => {
   return (
@@ -22,7 +22,7 @@ const Alert = ({ id, title, onClose }: Props) => {
   );
 };
 
-const Close = ({ onClose }) => (
+const Close = ({ onClose }: { onClose: () => void }) => (
   <button
     className="Toaster__alert_close"
     type="button"

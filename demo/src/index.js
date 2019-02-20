@@ -8,10 +8,7 @@ class Demo extends Component {
     return (
       <div className="Demo">
         <h1>Toasted Notes</h1>
-        <p>
-          Simple and flexible toast notifications for your React application. To
-          get started, install toasted notes using Yarn or NPM.
-        </p>
+        <p>Flexible toast notifications for your react application.</p>
 
         <pre className="Command">
           <code>yarn install toasted-notes</code>
