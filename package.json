@@ -1,10 +1,10 @@
 {
   "name": "toasted-notes",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Toast notifications for react",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "style": "umd/main.css",
+  "style": "lib/index.css",
   "files": [
     "css",
     "es",
