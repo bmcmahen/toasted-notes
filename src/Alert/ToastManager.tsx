@@ -34,7 +34,7 @@ type State = {
 export default class ToastManager extends React.Component<Props, State> {
   static idCounter = 0;
 
-  state = {
+  state: State = {
     "top-left": [],
     top: [],
     "top-right": [],

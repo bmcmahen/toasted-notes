@@ -1,6 +1,6 @@
 {
   "name": "toasted-notes",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Toast notifications for react",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -16,11 +16,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d demo/dist"
+    "deploy": "gh-pages -d demo/dist",
+    "rollup": "rollup -c"
   },
   "dependencies": {
     "@reach/alert": "^0.1.2",
-    "@types/prismjs": "^1.9.1",
     "react-spring": "^8.0.7"
   },
   "peerDependencies": {
@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@emotion/core": "^10.0.7",
+    "@types/prismjs": "^1.9.1",
     "@types/react": "^16.8.4",
     "@types/react-dom": "^16.8.2",
     "gh-pages": "^1.2.0",
@@ -37,6 +38,7 @@
     "react-dom": "16.8.2",
     "react-scripts": "^2.1.5",
     "rollup": "^1.2.2",
+    "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-typescript2": "^0.19.2",
     "typescript": "^3.3.3"
   },

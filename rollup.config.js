@@ -1,5 +1,9 @@
-import typescript from "rollup-plugin-typescript2";
+import typescriptPlugin from "rollup-plugin-typescript2";
+import postcss from "rollup-plugin-postcss";
+import typescript from "typescript";
+
 import pkg from "./package.json";
+
 export default {
   input: "src/Alert/index.ts",
   output: [
@@ -17,8 +21,11 @@ export default {
     ...Object.keys(pkg.peerDependencies || {})
   ],
   plugins: [
-    typescript({
-      typescript: require("typescript")
+    postcss({
+      extract: true
+    }),
+    typescriptPlugin({
+      typescript
     })
   ]
 };

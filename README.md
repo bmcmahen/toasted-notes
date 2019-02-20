@@ -23,7 +23,7 @@ yarn add toasted-notes
 
 ```
 import toaster from 'toasted-notes';
-import 'toasted-notes/umd/main.css';
+import 'toasted-notes/lib/index.css';
 
 const HelloWorld = () => (
   <button onClick={() => {
@@ -49,9 +49,9 @@ toaster.notify(<div>Hi there</div>)
 
 // using a render callback
 // assign the id attribute to the primary description for accessibility purposes
-toaster.notify(({ onClose, id }) => (
+toaster.notify(({ onClose }) => (
   <div>
-    <span id={id}>My custom toaster</span>
+    <span>My custom toaster</span>
     <button onClick={onClose}>Close me please</button>
   </div>
 ))
@@ -62,6 +62,6 @@ It also accepts options.
 ```
 toaster.notify('Hello world', {
   position: 'bottom-left', // top-left, top, top-right, bottom-left, bottom, bottom-right
-  duration: 0 // This notification will not automatically close
+  duration: null // This notification will not automatically close
 })
 ```
