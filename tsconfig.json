@@ -9,7 +9,8 @@
     "noImplicitAny": true,
     "outDir": "./dist",
     "preserveConstEnums": true,
-    "target": "es2017"
+    "target": "es2017",
+    "declaration": true
   },
   "exclude": ["node_modules"]
 }

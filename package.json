@@ -4,6 +4,7 @@
   "description": "Toast notifications for react",
   "main": "lib/index.js",
   "module": "es/index.js",
+  "types": "lib/Alert/index.d.ts",
   "style": "lib/index.css",
   "files": [
     "css",
@@ -17,7 +18,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d demo/dist",
-    "rollup": "rollup -c"
+    "rollup": "rollup -c",
+    "typescript": "tsc"
   },
   "dependencies": {
     "@reach/alert": "^0.1.2",
