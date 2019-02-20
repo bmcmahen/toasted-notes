@@ -6,7 +6,7 @@ import Alert from "./Alert";
 import { useTimeout } from "./useTimeout";
 import POSITIONS from "./Positions";
 
-interface MessageCallback {
+export interface MessageCallback {
   id: string;
   onClose: () => void;
 }
