@@ -1,5 +1,5 @@
 import * as React from "react";
-// import "./ToastMessage.css";
+import "./ToastMessage.css";
 import { useTransition, animated, config } from "react-spring";
 import ReachAlert from "@reach/alert";
 import Alert from "./Alert";
