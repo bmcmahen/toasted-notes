@@ -1,6 +1,5 @@
 import * as React from "react";
-// import "./ToastMessage.css";
-import { useTransition, animated, config } from "react-spring";
+import { useTransition, animated } from "react-spring";
 import ReachAlert from "@reach/alert";
 import Alert from "./Alert";
 import { useTimeout } from "./useTimeout";
@@ -53,8 +52,9 @@ export const Message = ({
   useTimeout(close, timeout);
 
   const animation = {
+    config: { mass: 1, tension: 185, friction: 26 },
     from: {
-      opacity: 0,
+      opacity: 1,
       height: 0,
       transform: `translateY(${isFromTop ? "-100%" : 0}) scale(1)`
     },
