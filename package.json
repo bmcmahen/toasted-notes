@@ -17,31 +17,31 @@
   },
   "dependencies": {
     "@reach/alert": "^0.1.2",
-    "react-spring": "^8.0.7"
+    "react-spring": "^8.0.7",
+    "sancho": "^1.0.0-beta.8",
+    "@emotion/core": "^10.0.10",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "prismjs": "^1.15.0"
   },
   "peerDependencies": {
     "react": "16.8.2",
     "react-dom": "16.8.2"
   },
   "devDependencies": {
-    "@emotion/core": "^10.0.10",
     "@types/prismjs": "^1.9.1",
     "@types/react": "^16.8.4",
     "@types/react-dom": "^16.8.2",
     "gh-pages": "^1.2.0",
-    "prismjs": "^1.15.0",
-    "react": "16.8.2",
-    "react-dom": "16.8.2",
     "react-scripts": "^2.1.5",
     "rimraf": "^2.6.3",
     "rollup": "^1.2.2",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-typescript2": "^0.19.2",
-    "sancho": "^1.0.0-beta.8",
     "typescript": "^3.3.4000"
   },
   "author": "Ben McMahen <ben.mcmahen@gmail.com>",
-  "homepage": "https://toasted-notes.netlify.com",
+  "homepage": "http://toasted-notes.surge.sh",
   "license": "MIT",
   "repository": "",
   "keywords": [
