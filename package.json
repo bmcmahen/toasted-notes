@@ -3,17 +3,16 @@
   "version": "2.1.1",
   "description": "Toast notifications for react",
   "main": "commonjs/index.js",
-  "module": "build/index.js",
-  "typings": "build/index.d.ts",
+  "module": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "style": "src/styles.css",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d demo/dist",
-    "build-library-commonjs": "rimraf ./commonjs && tsc --module commonjs --outDir commonjs",
-    "build-library": "rimraf ./build && tsc --outDir ./build",
+    "build-library-commonjs": "rimraf ./commonjs && tsc -p tsconfig.lib.json --module commonjs --outDir commonjs",
+    "build-library": "rimraf ./lib && tsc -p tsconfig.lib.json --outDir ./lib",
     "prepublish": "yarn run build-library && yarn run build-library-commonjs"
   },
   "dependencies": {

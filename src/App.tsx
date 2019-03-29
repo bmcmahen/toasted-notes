@@ -355,7 +355,7 @@ toaster.notify(
 
           <Section
             title="Using a render callback"
-            subtitle="Using a render callback allows you to tap into the close function."
+            subtitle="Using a render callback allows you to tap into the close function. It's your best option if you want to completely re-style your toast notification."
             code={`
 toaster.notify(({ onClose }) => (
   <a href="#" css={{ textDecoration: "none" }} onClick={onClose}>
