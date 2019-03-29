@@ -7,10 +7,6 @@
   "typings": "lib/index.d.ts",
   "style": "src/styles.css",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "build-library-commonjs": "rimraf ./commonjs && tsc -p tsconfig.lib.json --module commonjs --outDir commonjs",
     "build-library": "rimraf ./lib && tsc -p tsconfig.lib.json --outDir ./lib",
     "prepublish": "yarn run build-library && yarn run build-library-commonjs"
