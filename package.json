@@ -1,7 +1,7 @@
 {
   "name": "toasted-notes",
   "version": "2.1.1",
-  "description": "Toast notifications for react",
+  "description": "Flexible, easy to implement toast notifications for react",
   "main": "commonjs/index.js",
   "module": "lib/index.js",
   "typings": "lib/index.d.ts",
