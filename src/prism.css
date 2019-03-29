@@ -46,7 +46,7 @@ pre[class*="language-"] {
   margin: 0.5em 0;
   overflow: auto;
   border-radius: 8px;
-  background-color: #efeff9;
+  background-color: white;
 }
 
 .language-javascript {

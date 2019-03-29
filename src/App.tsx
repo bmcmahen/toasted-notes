@@ -13,12 +13,13 @@ import {
   Navbar,
   Toolbar,
   IconButton,
-  Tooltip
+  Tooltip,
+  Layer
 } from "sancho";
 import toaster, { Position } from "./Alert";
 
 const NarrowContainer = ({ children }: { children: React.ReactNode }) => (
-  <div css={{ maxWidth: "42rem", margin: "0 auto" }}>{children}</div>
+  <div css={{ maxWidth: "600px", margin: "0 auto" }}>{children}</div>
 );
 
 interface AppProps {}
@@ -62,7 +63,7 @@ export function App({  }: AppProps) {
       <Global
         styles={{
           html: {
-            backgroundAttachment: "fixed"
+            background: theme.colors.background.tint1
           },
           body: {
             margin: 0,
@@ -70,6 +71,7 @@ export function App({  }: AppProps) {
           },
           'pre[class*="language-"]': {
             borderRadius: 0,
+            boxShadow: `0 0 1px hsla(210,10.3%,22.7%,0.1), 0 0 1px 1px hsla(210,10.3%,22.7%,0.12)`,
             [theme.breakpoints.md]: {
               borderRadius: theme.radii.md
             }
@@ -159,13 +161,9 @@ export function App({  }: AppProps) {
       </div>
       <div
         css={{
-          position: "relative",
-          backgroundColor: theme.colors.scales.gray[3]
-          // backgroundImage: `url(${require("./images/blur-bright.jpg")})`,
-          // backgroundSize: "cover"
+          position: "relative"
         }}
       >
-        <Divider />
         <Container>
           <NarrowContainer>
             <div
@@ -173,8 +171,8 @@ export function App({  }: AppProps) {
                 paddingTop: theme.spaces.xl,
                 paddingBottom: theme.spaces.xl,
                 [theme.breakpoints.md]: {
-                  paddingTop: 0,
-                  paddingBottom: "5rem"
+                  // paddingTop: 0,
+                  paddingBottom: "3rem"
                 },
                 marginTop: "2rem"
               }}
@@ -192,7 +190,7 @@ export function App({  }: AppProps) {
                 And import the toast module and the recommended CSS files.
               </Text>
 
-              <pre>
+              <pre css={{}}>
                 <code className="language-javascript">
                   {`
 import toast from 'toasted-notes' 
@@ -205,20 +203,16 @@ toast.notify('Hello world!')
             </div>
           </NarrowContainer>
         </Container>
-        <Divider
-          fill={theme.colors.scales.gray[3]}
-          css={{
-            bottom: 0,
-            fill: theme.colors.scales.gray[3],
-            background: "white"
-            // transform: "rotate(180deg)"
-          }}
-        />
       </div>
       <Container>
         <NarrowContainer>
           <div
-            css={{ marginTop: theme.spaces.xl, marginBottom: theme.spaces.lg }}
+            css={{
+              marginBottom: theme.spaces.lg,
+              [theme.breakpoints.md]: {
+                // marginBottom: theme.spaces.xl
+              }
+            }}
           >
             <Text variant="h3">Examples</Text>
           </div>
@@ -239,7 +233,14 @@ toast.notify("Irure est ea deserunt labore ullamco est nisi labore in.");
             title="Using different positions"
             subtitle="You can display notifications in different positions, including top-left, top, top-right, bottom-left, bottom, and bottom-right."
             code={`
-['top-left', 'top', 'top-right', 'bottom-left', 'bottom', 'bottom-right'].forEach(position => {
+[
+  'top-left', 
+  'top', 
+  'top-right', 
+  'bottom-left', 
+  'bottom', 
+  'bottom-right'
+].forEach(position => {
   toast.notify("Using position " + position, {
     position
   });
@@ -256,7 +257,7 @@ toast.notify("Irure est ea deserunt labore ullamco est nisi labore in.");
           />
 
           <Section
-            title="Without a user duration"
+            title="Display indefinitely"
             subtitle="When the user duration is set to null, the notification will appear indefinitely until manually closed by the user."
             code={`
 toast.notify("I will not disappear", {
@@ -293,18 +294,20 @@ toast.notify(
             title="Using a render callback"
             subtitle="Using a render callback allows you to tap into the close function."
             code={`
-toast.notify(
+toaster.notify(({ onClose }) => (
   <div>
-    <h3>Custom react node</h3>
+    <span>My custom toaster</span>
+    <button onClick={onClose}>Close me please</button>
   </div>
-);
+))
         `}
             example={() => {
-              toaster.notify(
+              toaster.notify(({ onClose }) => (
                 <div>
-                  <h3>Custom react node</h3>
+                  <span>My custom toaster</span>
+                  <button onClick={onClose}>Close me please</button>
                 </div>
-              );
+              ));
             }}
           />
         </NarrowContainer>
@@ -322,40 +325,71 @@ interface SectionProps {
 
 function Section({ subtitle, code, title, example }: SectionProps) {
   return (
-    <section
+    <Layer
       css={{
+        borderRadius: 0,
         position: "relative",
         maxWidth: "45rem",
-        margin: "0 auto",
-        marginBottom: theme.spaces.xl
+        marginLeft: "-1rem",
+        marginRight: "-1rem",
+        boxShadow: "none",
+        marginBottom: theme.spaces.lg,
+        [theme.breakpoints.md]: {
+          borderRadius: theme.radii.lg,
+          marginBottom: theme.spaces.xl,
+          boxShadow: theme.shadows.xs
+        }
       }}
+      elevation={"xs"}
     >
-      <Text css={{ display: "inline-block" }} variant="h5">
-        {title}
-      </Text>{" "}
-      <Button
-        css={{ position: "absolute", bottom: "1rem", right: 0 }}
-        size="sm"
-        onClick={e => {
-          e.preventDefault();
-          example();
-        }}
-      >
-        View example
-      </Button>
-      {subtitle && <Text variant="paragraph">{subtitle}</Text>}
-      <pre>
-        <code className="language-javascript">{code}</code>
-      </pre>
-    </section>
+      <section css={{}}>
+        <div css={{ padding: theme.spaces.md, paddingBottom: 0 }}>
+          <Text css={{ display: "inline-block" }} variant="h5">
+            {title}
+          </Text>{" "}
+          {subtitle && <Text variant="paragraph">{subtitle}</Text>}
+        </div>
+        <div
+          css={{
+            paddingLeft: theme.spaces.md,
+            overflow: "hidden",
+            [theme.breakpoints.md]: {
+              padding: 0,
+              overflow: "visible"
+            }
+          }}
+        >
+          <pre
+            css={{
+              boxShadow:
+                "0 0 1px hsla(210,10.3%,22.7%,0.1), 0 0 1px 1px hsla(210,10.3%,22.7%,0.12)",
+              background: "white !important"
+            }}
+          >
+            <code className="language-javascript">{code}</code>
+          </pre>
+        </div>
+        <div css={{ padding: theme.spaces.md, paddingTop: 0 }}>
+          <Button
+            // css={{ position: "absolute", bottom: "1rem", right: 0 }}
+            size="sm"
+            onClick={e => {
+              e.preventDefault();
+              example();
+            }}
+          >
+            View example
+          </Button>
+        </div>
+      </section>
+    </Layer>
   );
 }
 
-function Divider({ fill, ...other }: any) {
+function Divider({ fill = "white", ...other }: any) {
   return (
     <div
       css={{
-        // position: "absolute",
         display: "none",
         [theme.breakpoints.md]: {
           display: "block"
@@ -369,7 +403,8 @@ function Divider({ fill, ...other }: any) {
       {...other}
     >
       <svg
-        id="slit"
+        fill={fill}
+        id="bigHalfCircle"
         xmlns="http://www.w3.org/2000/svg"
         version="1.1"
         width="100%"
@@ -377,17 +412,7 @@ function Divider({ fill, ...other }: any) {
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
       >
-        <path
-          fill="#efeff9"
-          id="slitPath2"
-          d="M50 100 C49 80 47 0 40 0 L47 0 Z"
-        />
-        <path
-          fill="#efeff9"
-          id="slitPath3"
-          d="M50 100 C51 80 53 0 60 0 L53 0 Z"
-        />
-        <path fill={fill || "white"} id="slitPath1" d="M47 0 L50 100 L53 0 Z" />
+        <path d="M0 100 C40 0 60 0 100 100 Z" />
       </svg>
     </div>
   );
