@@ -41,7 +41,7 @@
     "typescript": "^3.3.4000"
   },
   "author": "Ben McMahen <ben.mcmahen@gmail.com>",
-  "homepage": "https://github.com/bmcmahen/toasted-notes",
+  "homepage": "https://toasted-notes.netlify.com",
   "license": "MIT",
   "repository": "",
   "keywords": [
