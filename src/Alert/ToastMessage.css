@@ -1,14 +1,17 @@
-.Toaster {
-  --deceleration: cubic-bezier(0, 0, 0.2, 1);
-  --acceleration: cubic-bezier(0.4, 0, 1, 1);
-  --spring: cubic-bezier(0.175, 0.885, 0.32, 1.175);
-  --duration: 240ms;
-}
-
 .Toaster__message {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.Toaster__manager-bottom-right .Toaster__message,
+.Toaster__manager-top-right .Toaster__message {
+  align-items: flex-end;
+}
+
+.Toaster__manager-bottom-left .Toaster__message,
+.Toaster__manager-top-left .Toaster__message {
+  align-items: flex-start;
 }
 
 .Toaster__message-wrapper {

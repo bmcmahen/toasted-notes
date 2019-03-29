@@ -28,6 +28,35 @@ export function App({  }: AppProps) {
     Prism.highlightAll();
   }, []);
 
+  function play() {
+    toaster.notify("Hi there. This is your standard notification.");
+    setTimeout(() => {
+      toaster.notify("You can change the position to the top-left.", {
+        position: "top-left"
+      });
+    }, 400);
+    setTimeout(() => {
+      toaster.notify("Or top-right.", {
+        position: "top-right"
+      });
+    }, 800);
+    setTimeout(() => {
+      toaster.notify("Or bottom-right.", {
+        position: "bottom-right"
+      });
+    }, 1200);
+    setTimeout(() => {
+      toaster.notify("Or bottom.", {
+        position: "bottom"
+      });
+    }, 1600);
+    setTimeout(() => {
+      toaster.notify("Or bottom-left.", {
+        position: "bottom-left"
+      });
+    }, 2000);
+  }
+
   return (
     <div>
       <Global
@@ -121,10 +150,9 @@ export function App({  }: AppProps) {
               css={{ marginTop: theme.spaces.lg }}
               size="lg"
               iconAfter="arrow-right"
-              href="https://github.com/bmcmahen/toasted-notes"
-              component="a"
+              onClick={play}
             >
-              Learn more on Github
+              Show me the magic
             </Button>
           </div>
         </Container>
