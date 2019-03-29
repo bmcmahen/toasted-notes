@@ -1,23 +1,20 @@
 {
   "name": "toasted-notes",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Toast notifications for react",
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "style": "umd/main.css",
-  "files": [
-    "css",
-    "es",
-    "lib",
-    "umd"
-  ],
+  "main": "commonjs/index.js",
+  "module": "build/index.js",
+  "typings": "build/index.d.ts",
+  "style": "src/styles.css",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d demo/dist",
-    "rollup": "rollup -c"
+    "build-library-commonjs": "rimraf ./commonjs && tsc --module commonjs --outDir commonjs",
+    "build-library": "rimraf ./build && tsc --outDir ./build",
+    "prepublish": "yarn run build-library && yarn run build-library-commonjs"
   },
   "dependencies": {
     "@reach/alert": "^0.1.2",
@@ -37,13 +34,14 @@
     "react": "16.8.2",
     "react-dom": "16.8.2",
     "react-scripts": "^2.1.5",
+    "rimraf": "^2.6.3",
     "rollup": "^1.2.2",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-typescript2": "^0.19.2",
     "sancho": "^1.0.0-beta.8",
-    "typescript": "^3.3.3"
+    "typescript": "^3.3.4000"
   },
-  "author": "Ben McMahen",
+  "author": "Ben McMahen <ben.mcmahen@gmail.com>",
   "homepage": "https://github.com/bmcmahen/toasted-notes",
   "license": "MIT",
   "repository": "",

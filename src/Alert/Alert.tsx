@@ -1,5 +1,4 @@
 import * as React from "react";
-import "./Alert.css";
 
 interface Props {
   id: string;

@@ -6,7 +6,6 @@ import {
   MessageOptions,
   MessageProp
 } from "./Message";
-import "./ToastManager.css";
 
 interface Props {
   notify: (fn: Function) => void;

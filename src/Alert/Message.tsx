@@ -4,7 +4,6 @@ import ReachAlert from "@reach/alert";
 import Alert from "./Alert";
 import { useTimeout } from "./useTimeout";
 import POSITIONS from "./Positions";
-import "./ToastMessage.css";
 
 interface MessageCallback {
   id: string;

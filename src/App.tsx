@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Global } from "@emotion/core";
 import * as React from "react";
-
+import "./styles.css";
 import "./prism.css";
 import Prism from "prismjs";
 import { PositionsType } from "./Alert/Message";
@@ -14,7 +14,10 @@ import {
   Toolbar,
   IconButton,
   Tooltip,
-  Layer
+  Layer,
+  Link,
+  Alert,
+  Embed
 } from "sancho";
 import toaster, { Position } from "./Alert";
 
@@ -32,7 +35,7 @@ export function App({  }: AppProps) {
   function play() {
     toaster.notify("Hi there. This is your standard notification.");
     setTimeout(() => {
-      toaster.notify("You can change the position to the top-left.", {
+      toaster.notify("Hello from the top-left", {
         position: "top-left"
       });
     }, 400);
@@ -56,6 +59,49 @@ export function App({  }: AppProps) {
         position: "bottom-left"
       });
     }, 2000);
+
+    setTimeout(() => {
+      toaster.notify(
+        <Text gutter={false} variant="h3">
+          This is made using a custom node
+        </Text>
+      );
+    }, 2500);
+
+    setTimeout(() => {
+      toaster.notify(
+        ({ onClose }) => (
+          <a
+            href="#"
+            css={{ display: "block", textDecoration: "none" }}
+            onClick={onClose}
+          >
+            <Layer
+              elevation="md"
+              css={{
+                overflow: "hidden",
+                alignItems: "center",
+                display: "flex"
+              }}
+            >
+              <img
+                width="120px"
+                height="120px"
+                src="https://randomuser.me/api/portraits/men/32.jpg"
+              />
+
+              <div css={{ padding: "1rem" }}>
+                <Text variant="h5">Did you know?</Text>
+                <Text css={{ display: "block" }}>
+                  You can customize the notification using a render callback.
+                </Text>
+              </div>
+            </Layer>
+          </a>
+        ),
+        { position: "bottom-left" }
+      );
+    }, 3000);
   }
 
   return (
@@ -63,7 +109,7 @@ export function App({  }: AppProps) {
       <Global
         styles={{
           html: {
-            background: theme.colors.background.tint1
+            background: theme.colors.background.tint2
           },
           body: {
             margin: 0,
@@ -83,9 +129,17 @@ export function App({  }: AppProps) {
           }
         }}
       />
-      <Navbar position="static">
+      <Navbar
+        position="absolute"
+        css={{
+          boxShadow: "none !important",
+          background: "none !important",
+          width: "100%",
+          zIndex: theme.zIndex.fixed
+        }}
+      >
         <Toolbar>
-          <Text variant="h5" gutter={false}>
+          <Text variant="h5" css={{ color: "white !important" }} gutter={false}>
             Toasted Notes
           </Text>
           <div css={{ marginLeft: "auto" }}>
@@ -93,8 +147,8 @@ export function App({  }: AppProps) {
               <IconButton
                 variant="ghost"
                 component="a"
-                css={{ marginLeft: theme.spaces.md }}
-                color={theme.colors.text.muted}
+                css={{ color: "white", marginLeft: theme.spaces.md }}
+                color={"white"}
                 href="https://github.com/bmcmahen/sancho"
                 icon={
                   <svg
@@ -109,7 +163,7 @@ export function App({  }: AppProps) {
                       clipRule="evenodd"
                       d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z"
                       transform="scale(64)"
-                      fill="#1B1F23"
+                      fill="white"
                     />
                   </svg>
                 }
@@ -122,7 +176,10 @@ export function App({  }: AppProps) {
       <div
         css={{
           position: "relative",
-          background: "white"
+
+          backgroundSize: "cover",
+          backgroundImage: `url(${require("./images/splash.jpg")})`,
+          backgroundAttachment: "fixed"
         }}
       >
         <Container>
@@ -132,17 +189,22 @@ export function App({  }: AppProps) {
               flexDirection: "column",
               alignItems: "center",
               textAlign: "center",
-              padding: `${theme.spaces.lg} 0`,
+
+              paddingTop: `calc(${theme.spaces.lg} + 50px)`,
+              paddingBottom: theme.spaces.xl,
               [theme.breakpoints.md]: {
-                paddingTop: "4rem",
+                paddingTop: "calc(4rem + 50px)",
                 paddingBottom: "5rem"
               }
             }}
           >
-            <Text variant="display3">
+            <Text css={{ color: "white !important" }} variant="display3">
               Easy, flexible toast notifications for React
             </Text>
-            <Text css={{ maxWidth: "38rem" }} variant="lead">
+            <Text
+              css={{ color: "white !important", maxWidth: "38rem" }}
+              variant="lead"
+            >
               Toasted notes provides completely configurable toast notifications
               for your React application and it uses an imperative API which
               makes it easy to invoke within error or event handlers.
@@ -158,6 +220,7 @@ export function App({  }: AppProps) {
             </Button>
           </div>
         </Container>
+        <Divider />
       </div>
       <div
         css={{
@@ -173,8 +236,8 @@ export function App({  }: AppProps) {
                 [theme.breakpoints.md]: {
                   // paddingTop: 0,
                   paddingBottom: "3rem"
-                },
-                marginTop: "2rem"
+                }
+                // marginTop: "2rem"
               }}
             >
               <Text variant="h3">Getting started</Text>
@@ -275,17 +338,17 @@ toast.notify("I will not disappear", {
             title="Using a custom element"
             subtitle="You can supply a custom element to render in replacement of the standard string."
             code={`
-toast.notify(
-  <div>
-    <h3>Custom react node</h3>
-  </div>
+toaster.notify(
+  <Text gutter={false} variant="h3">
+    This has much larger text!
+  </Text>
 );
         `}
             example={() => {
               toaster.notify(
-                <div>
-                  <h3>Custom react node</h3>
-                </div>
+                <Text gutter={false} variant="h3">
+                  This has much larger text!
+                </Text>
               );
             }}
           />
@@ -295,21 +358,68 @@ toast.notify(
             subtitle="Using a render callback allows you to tap into the close function."
             code={`
 toaster.notify(({ onClose }) => (
-  <div>
-    <span>My custom toaster</span>
-    <button onClick={onClose}>Close me please</button>
-  </div>
-))
+  <a href="#" css={{ textDecoration: "none" }} onClick={onClose}>
+    <Layer
+      elevation="md"
+      css={{
+        overflow: "hidden",
+        alignItems: "center",
+        display: "flex"
+      }}
+    >
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" />
+      <div css={{ padding: "1rem" }}>
+        <Text variant="h5">Did you know?</Text>
+        <Text css={{ display: "block" }}>
+          You can customize the notification using a render
+          callback.
+        </Text>
+      </div>
+    </Layer>
+  </a>
+));
         `}
             example={() => {
               toaster.notify(({ onClose }) => (
-                <div>
-                  <span>My custom toaster</span>
-                  <button onClick={onClose}>Close me please</button>
-                </div>
+                <a href="#" css={{ textDecoration: "none" }} onClick={onClose}>
+                  <Layer
+                    elevation="md"
+                    css={{
+                      overflow: "hidden",
+                      alignItems: "center",
+                      display: "flex"
+                    }}
+                  >
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" />
+                    <div css={{ padding: "1rem" }}>
+                      <Text variant="h5">Did you know?</Text>
+                      <Text css={{ display: "block" }}>
+                        You can customize the notification using a render
+                        callback.
+                      </Text>
+                    </div>
+                  </Layer>
+                </a>
               ));
             }}
           />
+          <div css={{ textAlign: "center", margin: theme.spaces.lg }}>
+            <Button
+              component="a"
+              href="http://github.com/bmcmahen/toasted-notes"
+              css={{ marginBottom: theme.spaces.md }}
+              size="lg"
+              intent="primary"
+              iconAfter="arrow-right"
+            >
+              Learn more on Github
+            </Button>
+            <br />
+            <br />
+            <Text muted css={{ fontSize: theme.sizes[0] }}>
+              Created by <Link href="http://benmcmahen.com">Ben McMahen</Link>
+            </Text>
+          </div>
         </NarrowContainer>
       </Container>
     </div>
@@ -327,6 +437,7 @@ function Section({ subtitle, code, title, example }: SectionProps) {
   return (
     <Layer
       css={{
+        background: theme.colors.background.tint1 + " !important",
         borderRadius: 0,
         position: "relative",
         maxWidth: "45rem",
@@ -361,9 +472,12 @@ function Section({ subtitle, code, title, example }: SectionProps) {
         >
           <pre
             css={{
-              boxShadow:
-                "0 0 1px hsla(210,10.3%,22.7%,0.1), 0 0 1px 1px hsla(210,10.3%,22.7%,0.12)",
-              background: "white !important"
+              boxShadow: "none",
+              [theme.breakpoints.md]: {
+                boxShadow:
+                  "0 0 1px hsla(210,10.3%,22.7%,0.1), 0 0 1px 1px hsla(210,10.3%,22.7%,0.12)"
+              }
+              // background: "white !important"
             }}
           >
             <code className="language-javascript">{code}</code>
@@ -386,7 +500,7 @@ function Section({ subtitle, code, title, example }: SectionProps) {
   );
 }
 
-function Divider({ fill = "white", ...other }: any) {
+function Divider({ fill = theme.colors.background.tint2, ...other }: any) {
   return (
     <div
       css={{
