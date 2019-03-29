@@ -13,14 +13,17 @@
   },
   "dependencies": {
     "@reach/alert": "^0.1.2",
-    "prismjs": "^1.15.0",
+    "@types/react": "^16.8.10",
+    "@types/react-dom": "^16.8.3",
     "react-spring": "^8.0.7"
   },
   "peerDependencies": {
-    "@types/react": "^16.8.4",
-    "@types/react-dom": "^16.8.2"
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
   },
   "devDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-scripts": "^2.1.5",
     "rimraf": "^2.6.3",
     "typescript": "^3.3.4000"
