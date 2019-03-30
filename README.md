@@ -4,7 +4,7 @@
 [![npm package][npm-badge]][npm]
 [![Coveralls][coveralls-badge]][coveralls]
 
-A super simple but flexible implementation of toast style notifications for React, initially based on the excellent implementation found in [Evergreen](https://github.com/segmentio/evergreen). [View the demo and documentation](https://toasted-notes.netlifyl.com/)
+A super simple but flexible implementation of toast style notifications for React, initially based on the excellent implementation found in [Evergreen](https://github.com/segmentio/evergreen). [View the demo and documentation](https://toasted-notes.netlify.com/)
 
 Install:
 
@@ -48,7 +48,6 @@ toaster.notify('With a simple string')
 toaster.notify(<div>Hi there</div>)
 
 // using a render callback
-// assign the id attribute to the primary description for accessibility purposes
 toaster.notify(({ onClose }) => (
   <div>
     <span>My custom toaster</span>
