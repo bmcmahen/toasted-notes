@@ -9,7 +9,9 @@
   "scripts": {
     "build-library-commonjs": "rimraf ./commonjs && tsc -p tsconfig.lib.json --module commonjs --outDir commonjs",
     "build-library": "rimraf ./lib && tsc -p tsconfig.lib.json --outDir ./lib",
-    "prepublish": "yarn run build-library && yarn run build-library-commonjs"
+    "prepublish": "yarn run build-library && yarn run build-library-commonjs",
+    "storybook": "start-storybook -p 9009",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@reach/alert": "^0.1.2",
@@ -22,6 +24,10 @@
     "react-dom": "^16.8.4"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^5.0.5",
+    "@storybook/addon-links": "^5.0.5",
+    "@storybook/react": "^5.0.5",
+    "babel-loader": "^8.0.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^2.1.5",

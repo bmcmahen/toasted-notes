@@ -12,15 +12,6 @@
     rgba(52, 58, 64, 0.12) 0px 6px 15px -2px;
 }
 
-.Toaster__alert:before {
-  content: "";
-  width: 4px;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 .Toaster__alert_text {
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,

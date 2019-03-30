@@ -105,11 +105,7 @@ export default class ToastManager extends React.Component<Props, State> {
       const p = position as keyof State;
       const toasts = this.state[p];
       return (
-        <span
-          key={position}
-          className={"Toaster__manager-" + position}
-          style={{ pointerEvents: toasts.length > 0 ? "auto" : "none" }}
-        >
+        <span key={position} className={"Toaster__manager-" + position}>
           {toasts.map((toast: ToastArgs) => {
             return <Message position={p} key={toast.id} {...toast} />;
           })}
