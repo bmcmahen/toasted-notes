@@ -100,12 +100,48 @@ export default class ToastManager extends React.Component<Props, State> {
     });
   };
 
+  getStyle = (position: PositionsType) => {
+    let style = {
+      maxWidth: '560px',
+      position: 'fixed',
+      zIndex: 5500,
+      pointerEvents: 'none'
+    } as React.CSSProperties;
+
+    if (position === 'top' || position === 'bottom') {
+      style.margin = '0 auto';
+      style.textAlign = 'center';
+    }
+
+    if (position.includes('top')) {
+      style.top = 0;
+    }
+
+    if (position.includes('bottom')) {
+      style.bottom = 0;
+    }
+
+    if (!position.includes('left')) {
+      style.right = 0;
+    }
+
+    if (!position.includes('right')) {
+      style.left = 0;
+    }
+
+    return style;
+  }
+
   render() {
     return Object.keys(this.state).map(position => {
       const p = position as keyof State;
       const toasts = this.state[p];
       return (
-        <span key={position} className={"Toaster__manager-" + position}>
+        <span
+          key={position}
+          className={"Toaster__manager-" + position}
+          style={this.getStyle(position as PositionsType)}
+        >
           {toasts.map((toast: ToastArgs) => {
             return <Message position={p} key={toast.id} {...toast} />;
           })}
