@@ -1,10 +1,6 @@
 # Toasted Notes
 
-[![Travis][build-badge]][build]
-[![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
-
-A super simple but flexible implementation of toast style notifications for React, initially based on the excellent implementation found in [Evergreen](https://github.com/segmentio/evergreen). [View the demo and documentation](https://toasted-notes.netlify.com/)
+A super simple but flexible implementation of toast style notifications for React, initially based on the excellent implementation found in [Evergreen](https://github.com/segmentio/evergreen). [View the demo and documentation](https://toasted-notes.netlify.com/).
 
 Install:
 
@@ -23,7 +19,7 @@ yarn add toasted-notes
 
 ```
 import toaster from 'toasted-notes';
-import 'toasted-notes/src/styles.css';
+import 'toasted-notes/src/styles.css'; // optional styles
 
 const HelloWorld = () => (
   <button onClick={() => {
@@ -64,3 +60,7 @@ toaster.notify('Hello world', {
   duration: null // This notification will not automatically close
 })
 ```
+
+# Contributors
+
+- [Einar Löve](https://github.com/einarlove)
