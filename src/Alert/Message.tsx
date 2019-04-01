@@ -67,20 +67,24 @@ export const Message = ({
 
   useTimeout(close, timeout);
 
-  const animation = {
+  const animation: any = {
     config: { mass: 1, tension: 185, friction: 26 },
     from: {
       opacity: 1,
       height: 0,
       transform: `translateY(${isFromTop ? "-100%" : 0}) scale(1)`
     },
-    enter: () => (next: any) =>
+    enter: () => next =>
       next({
         opacity: 1,
         height: container.current!.getBoundingClientRect().height,
         transform: `translateY(0) scale(1)`
       }),
-    leave: { opacity: 0, height: 0, transform: `translateY(0) scale(0.9)` },
+    leave: {
+      opacity: 0,
+      height: 0,
+      transform: `translateY(0 scale(0.9)`
+    },
     onRest
   };
 
