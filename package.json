@@ -9,7 +9,7 @@
   "scripts": {
     "build-library-commonjs": "rimraf ./commonjs && tsc -p tsconfig.lib.json --module commonjs --outDir commonjs",
     "build-library": "rimraf ./lib && tsc -p tsconfig.lib.json --outDir ./lib",
-    "prepublish": "yarn run build-library && yarn run build-library-commonjs",
+    "prepublishOnly": "yarn run build-library && yarn run build-library-commonjs",
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook"
   },
@@ -17,7 +17,7 @@
     "@reach/alert": "^0.1.2",
     "@types/react": "^16.8.10",
     "@types/react-dom": "^16.8.3",
-    "react-spring": "^8.0.7"
+    "react-spring": "^8.0.18"
   },
   "peerDependencies": {
     "react": "^16.8.4",

@@ -16,15 +16,15 @@ export type PositionsType = keyof typeof POSITIONS;
 
 const getStyle = (position: PositionsType) => {
   let style = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   } as React.CSSProperties;
 
-  if (position.includes('right')) {
-    style.alignItems = 'flex-end';
-  } else if (position.includes('left')) {
-    style.alignItems = 'flex-start';
+  if (position.includes("right")) {
+    style.alignItems = "flex-end";
+  } else if (position.includes("left")) {
+    style.alignItems = "flex-start";
   }
 
   return style;
@@ -84,7 +84,7 @@ export const Message = ({
     onRest
   };
 
-  const transition = useTransition(localShow, null, animation as any);
+  const transition = useTransition(localShow, null, animation);
   const style = React.useMemo(() => getStyle(position), [position]);
 
   function onMouseEnter() {
@@ -139,7 +139,7 @@ export const Message = ({
               <animated.div
                 style={{
                   transform: props.transform,
-                  pointerEvents: 'auto'
+                  pointerEvents: "auto"
                 }}
                 ref={container}
                 className="Toaster__message-wrapper"
