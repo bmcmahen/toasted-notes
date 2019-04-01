@@ -101,49 +101,49 @@ export default class ToastManager extends React.Component<Props, State> {
   };
 
   getStyle = (position: PositionsType) => {
-    let style = {
-      maxWidth: '560px',
-      position: 'fixed',
+    let style: React.CSSProperties = {
+      maxWidth: "560px",
+      position: "fixed",
       zIndex: 5500,
-      pointerEvents: 'none'
-    } as React.CSSProperties;
+      pointerEvents: "none"
+    };
 
-    if (position === 'top' || position === 'bottom') {
-      style.margin = '0 auto';
-      style.textAlign = 'center';
+    if (position === "top" || position === "bottom") {
+      style.margin = "0 auto";
+      style.textAlign = "center";
     }
 
-    if (position.includes('top')) {
+    if (position.includes("top")) {
       style.top = 0;
     }
 
-    if (position.includes('bottom')) {
+    if (position.includes("bottom")) {
       style.bottom = 0;
     }
 
-    if (!position.includes('left')) {
+    if (!position.includes("left")) {
       style.right = 0;
     }
 
-    if (!position.includes('right')) {
+    if (!position.includes("right")) {
       style.left = 0;
     }
 
     return style;
-  }
+  };
 
   render() {
     return Object.keys(this.state).map(position => {
-      const p = position as keyof State;
-      const toasts = this.state[p];
+      const pos = position as keyof State;
+      const toasts = this.state[pos];
       return (
         <span
           key={position}
-          className={"Toaster__manager-" + position}
-          style={this.getStyle(position as PositionsType)}
+          className={"Toaster__manager-" + pos}
+          style={this.getStyle(pos)}
         >
           {toasts.map((toast: ToastArgs) => {
-            return <Message position={p} key={toast.id} {...toast} />;
+            return <Message position={pos} key={toast.id} {...toast} />;
           })}
         </span>
       );
