@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import toast from "../Alert";
+import toast, { Position } from '../Alert';
 import "../styles.css";
 
 storiesOf("Toasted-notes", module).add("pointer-events", () => (
@@ -27,5 +27,22 @@ storiesOf("Toasted-notes", module).add("pointer-events", () => (
       dolore commodo occaecat voluptate voluptate et. Nostrud est ex aliquip
       officia do dolore Lorem. Non veniam excepteur aute ullamco magna.
     </span>
+  </div>
+)).add('all directions', () => (
+  <div>
+    {Object.keys(Position).map(position => (
+      <button
+        onClick={() => {
+          toast.notify(
+            Array.from({ length: Math.floor(Math.random() * 10) })
+              .fill(position)
+              .join(', '),
+            { duration: null, position },
+          )
+        }}
+      >
+        {position}
+      </button>
+    ))}
   </div>
 ));

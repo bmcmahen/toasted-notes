@@ -14,6 +14,22 @@ export type MessageType = "default" | "success" | "error";
 
 export type PositionsType = keyof typeof POSITIONS;
 
+const getStyle = (position: PositionsType) => {
+  let style = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  } as React.CSSProperties;
+
+  if (position.includes('right')) {
+    style.alignItems = 'flex-end';
+  } else if (position.includes('left')) {
+    style.alignItems = 'flex-start';
+  }
+
+  return style;
+};
+
 export type MessageProp =
   | React.ReactNode
   | ((callback: MessageCallback) => React.ReactNode)
@@ -69,6 +85,7 @@ export const Message = ({
   };
 
   const transition = useTransition(localShow, null, animation as any);
+  const style = React.useMemo(() => getStyle(position), [position]);
 
   function onMouseEnter() {
     setTimeout(null);
@@ -115,12 +132,14 @@ export const Message = ({
               onMouseLeave={onMouseLeave}
               style={{
                 opacity: props.opacity,
-                height: props.height
+                height: props.height,
+                ...style
               }}
             >
               <animated.div
                 style={{
-                  transform: props.transform
+                  transform: props.transform,
+                  pointerEvents: 'auto'
                 }}
                 ref={container}
                 className="Toaster__message-wrapper"
