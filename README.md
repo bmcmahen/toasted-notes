@@ -1,6 +1,8 @@
 # Toasted Notes
 
-A super simple but flexible implementation of toast style notifications for React, initially based on the excellent implementation found in [Evergreen](https://github.com/segmentio/evergreen). [View the demo and documentation](https://toasted-notes.netlify.com/).
+A super simple but flexible implementation of toast style notifications for React, initially based on the excellent implementation found in [Evergreen](https://github.com/segmentio/evergreen). 
+
+[View the demo and documentation](https://toasted-notes.netlify.com/).
 
 Install:
 
@@ -8,14 +10,7 @@ Install:
 yarn add toasted-notes
 ```
 
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
-
-# Example
+## Example
 
 ```
 import toaster from 'toasted-notes';
@@ -32,7 +27,7 @@ const HelloWorld = () => (
 )
 ```
 
-# API
+## API
 
 The notify function accepts either a string, a react node, or a render callback.
 
@@ -61,7 +56,7 @@ toaster.notify('Hello world', {
 })
 ```
 
-# Using Context
+## Using Context
 
 One downside to the current API is that render callbacks and custom nodes won't get access to any application context, such as theming variables provided by styled-components. To ensure that render callbacks have access to the necessary context, you'll need to supply that context to the callback.
 
@@ -73,9 +68,9 @@ const CustomNotification = ({ title }) => {
 
 const CustomNotificationWithTheme = withTheme(CustomNotification)
 
-toaster.notify(() => <CustomNotificationWithTheme title='I am pretty' />)
+toaster.notify(() => <CustomNotificationWithTheme title="I am pretty" />)
 ```
 
-# Contributors
+## Contributors
 
 - [Einar Löve](https://github.com/einarlove)
