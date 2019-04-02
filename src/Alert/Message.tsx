@@ -67,7 +67,7 @@ export const Message = ({
 
   useTimeout(close, timeout);
 
-  const animation: any = {
+  const animation = {
     config: { mass: 1, tension: 185, friction: 26 },
     from: {
       opacity: 1,
@@ -86,7 +86,7 @@ export const Message = ({
       transform: `translateY(0 scale(0.9)`
     },
     onRest
-  };
+  } as any;
 
   const transition = useTransition(localShow, null, animation);
   const style = React.useMemo(() => getStyle(position), [position]);
