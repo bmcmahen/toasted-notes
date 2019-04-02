@@ -74,7 +74,7 @@ export const Message = ({
       height: 0,
       transform: `translateY(${isFromTop ? "-100%" : 0}) scale(1)`
     },
-    enter: () => next =>
+    enter: () => (next: any) =>
       next({
         opacity: 1,
         height: container.current!.getBoundingClientRect().height,
