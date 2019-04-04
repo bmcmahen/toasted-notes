@@ -12,7 +12,7 @@ yarn add toasted-notes
 
 ## Example
 
-```
+```jsx
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css'; // optional styles
 
