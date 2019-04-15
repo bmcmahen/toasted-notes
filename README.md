@@ -1,6 +1,6 @@
 # Toasted Notes
 
-A super simple but flexible implementation of toast style notifications for React, initially based on the excellent implementation found in [Evergreen](https://github.com/segmentio/evergreen). 
+A super simple but flexible implementation of toast style notifications for React, and used in [Sancho UI](https://github.com/bmcmahen/sancho).
 
 [View the demo and documentation](https://toasted-notes.netlify.com/).
 
@@ -74,3 +74,7 @@ toaster.notify(() => <CustomNotificationWithTheme title="I am pretty" />)
 ## Contributors
 
 - [Einar Löve](https://github.com/einarlove)
+
+## Prior art
+
+Way back, this was originally based on the wonderful implementation of notifications in [evergreen](https://evergreen.segment.com).
