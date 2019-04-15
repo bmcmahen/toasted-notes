@@ -1,4 +1,14 @@
-# Toasted Notes
+<div align="center">
+    
+# Toasted-notes
+  
+[![npm package](https://img.shields.io/npm/v/toasted-notes/latest.svg)](https://www.npmjs.com/package/toasted-notes)
+[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=toasted%20notes%20is%20a%20react%20library%20for%20creating%20simple%2C%20flexible%20toast%20notifications.&url=https://github.com/bmcmahen/toasted-notes&hashtags=react,javascript)
+[![Follow on Twitter](https://img.shields.io/twitter/follow/benmcmahen.svg?style=social&logo=twitter)](
+https://twitter.com/intent/follow?screen_name=benmcmahen
+)
+
+</div>
 
 A super simple but flexible implementation of toast style notifications for React, and used in [Sancho UI](https://github.com/bmcmahen/sancho).
 
