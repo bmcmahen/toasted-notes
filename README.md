@@ -10,11 +10,15 @@ https://twitter.com/intent/follow?screen_name=benmcmahen
 
 </div>
 
-A super simple but flexible implementation of toast style notifications for React, and used in [Sancho UI](https://github.com/bmcmahen/sancho).
+A simple but flexible implementation of toast style notifications for React extracted from [Sancho UI](https://github.com/bmcmahen/sancho). [View the demo and documentation](https://toasted-notes.netlify.com/).
 
-[View the demo and documentation](https://toasted-notes.netlify.com/).
+## Features
 
-Install:
+- __An imperative API.__ This means that you don't need to set component state or render elements to trigger notifications. Instead, just call a function.
+- __Render whatever you want.__ Utilize the render callback to create entirely custom notifications. 
+- __Functional default styles.__ Import the provided css for some nice styling defaults or write your own styles.
+
+## Install:
 
 ```
 yarn add toasted-notes
