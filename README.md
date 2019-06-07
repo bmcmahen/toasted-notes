@@ -10,7 +10,9 @@ https://twitter.com/intent/follow?screen_name=benmcmahen
 
 </div>
 
-A simple but flexible implementation of toast style notifications for React extracted from [Sancho UI](https://github.com/bmcmahen/sancho). [View the demo and documentation](https://toasted-notes.netlify.com/).
+A simple but flexible implementation of toast style notifications for React extracted from [Sancho UI](https://github.com/bmcmahen/sancho). 
+
+[View the demo and documentation](https://toasted-notes.netlify.com/).
 
 ## Features
 
