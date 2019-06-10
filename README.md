@@ -91,6 +91,10 @@ toaster.notify(() => <CustomNotificationWithTheme title="I am pretty" />)
 
 - [Einar Löve](https://github.com/einarlove)
 
+## License 
+
+MIT
+
 ## Prior art
 
 Way back, this was originally based on the wonderful implementation of notifications in [evergreen](https://evergreen.segment.com).
