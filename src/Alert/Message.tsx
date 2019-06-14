@@ -127,7 +127,7 @@ export const Message = ({
   return (
     <React.Fragment>
       {transition.map(
-        ({ key, item, props }: { key: string; item: any; props: any }) =>
+        ({ key, item, props }) =>
           item && (
             <animated.div
               key={key}
