@@ -8,7 +8,7 @@ import {
 } from "./Message";
 
 interface Props {
-  notify: (fn: Function) => void;
+  notify: (fn: Function, closeAll: Function) => void;
 }
 
 export interface MessageOptionalOptions {
@@ -39,6 +39,8 @@ const defaultState: State = {
   "bottom-right": []
 };
 
+type Keys = keyof State;
+
 export default class ToastManager extends React.Component<Props, State> {
   static idCounter = 0;
 
@@ -68,8 +70,9 @@ export default class ToastManager extends React.Component<Props, State> {
   };
 
   closeAll = () => {
-    Object.keys(this.state).forEach((pos: any) => {
-      this.state[pos].forEach(toast => {
+    Object.keys(this.state).forEach((pos: Keys) => {
+      const position = this.state[pos] as any;
+      position.forEach((toast: any) => {
         this.closeToast(toast.id, pos);
       });
     });

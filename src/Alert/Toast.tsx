@@ -31,7 +31,10 @@ class Toaster {
       portalElement = el;
     }
 
-    ReactDOM.render(<ToastManager notify={this.bindNotify} />, portalElement);
+    ReactDOM.render(
+      <ToastManager notify={this.bindNotify as any} />,
+      portalElement
+    );
   }
 
   closeAll = () => {
