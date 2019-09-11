@@ -9,6 +9,7 @@ const PORTAL_ID = "react-toast";
 
 class Toaster {
   createNotification?: Function;
+  removeAll?: Function;
 
   constructor() {
     if (!isBrowser) {
@@ -33,8 +34,15 @@ class Toaster {
     ReactDOM.render(<ToastManager notify={this.bindNotify} />, portalElement);
   }
 
-  bindNotify = (fn: Function) => {
+  closeAll = () => {
+    if (this.removeAll) {
+      this.removeAll();
+    }
+  };
+
+  bindNotify = (fn: Function, removeAll: Function) => {
     this.createNotification = fn;
+    this.removeAll = removeAll;
   };
 
   notify = (message: MessageProp, options: MessageOptionalOptions = {}) => {

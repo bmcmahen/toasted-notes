@@ -48,6 +48,7 @@ export interface MessageOptions {
 interface Props extends MessageOptions {
   message: MessageProp;
   zIndex?: number;
+  requestClose?: boolean;
   position: PositionsType;
 }
 
@@ -56,6 +57,7 @@ export const Message = ({
   message,
   position,
   onRequestRemove,
+  requestClose = false,
   duration = 30000
 }: Props) => {
   const container = React.useRef<HTMLDivElement | null>(null);
@@ -108,6 +110,12 @@ export const Message = ({
   function close() {
     setLocalShow(false);
   }
+
+  React.useEffect(() => {
+    if (requestClose) {
+      setLocalShow(false);
+    }
+  }, [requestClose]);
 
   function renderMessage() {
     if (typeof message === "string" || React.isValidElement(message)) {

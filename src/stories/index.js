@@ -46,5 +46,7 @@ storiesOf("Toasted-notes", module)
           {position}
         </button>
       ))}
+
+      <button onClick={() => toast.closeAll()}>close all</button>
     </div>
   ));

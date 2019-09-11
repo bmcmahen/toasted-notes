@@ -30,21 +30,23 @@ type State = {
   "bottom-right": Array<ToastArgs>;
 };
 
+const defaultState: State = {
+  top: [],
+  "top-left": [],
+  "top-right": [],
+  "bottom-left": [],
+  bottom: [],
+  "bottom-right": []
+};
+
 export default class ToastManager extends React.Component<Props, State> {
   static idCounter = 0;
 
-  state: State = {
-    "top-left": [],
-    top: [],
-    "top-right": [],
-    "bottom-left": [],
-    bottom: [],
-    "bottom-right": []
-  };
+  state: State = defaultState;
 
   constructor(props: Props) {
     super(props);
-    props.notify(this.notify);
+    props.notify(this.notify, this.closeAll);
   }
 
   notify = (message: MessageProp, options: MessageOptionalOptions) => {
@@ -62,6 +64,14 @@ export default class ToastManager extends React.Component<Props, State> {
           ? [toast, ...prev[position]]
           : [...prev[position], toast]
       };
+    });
+  };
+
+  closeAll = () => {
+    Object.keys(this.state).forEach((pos: any) => {
+      this.state[pos].forEach(toast => {
+        this.closeToast(toast.id, pos);
+      });
     });
   };
 
@@ -88,6 +98,21 @@ export default class ToastManager extends React.Component<Props, State> {
       onRequestRemove: () => this.removeToast(String(id), position),
       type: options.type
     };
+  };
+
+  closeToast = (id: string, position: PositionsType) => {
+    this.setState(prev => {
+      return {
+        ...prev,
+        [position]: prev[position].map(toast => {
+          if (toast.id !== id) return toast;
+          return {
+            ...toast,
+            requestClose: true
+          };
+        })
+      };
+    });
   };
 
   // actually fully remove the toast
