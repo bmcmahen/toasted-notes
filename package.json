@@ -30,7 +30,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^2.1.5",
-    "react-spring": "^8.0.27",
+    "react-spring": "^8.0.0",
     "rimraf": "^2.6.3",
     "typescript": "^3.5.0"
   },
