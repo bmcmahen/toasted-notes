@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
 import toast, { Position } from "../Alert";
 import "../styles.css";
@@ -49,4 +49,27 @@ storiesOf("Toasted-notes", module)
 
       <button onClick={() => toast.closeAll()}>close all</button>
     </div>
-  ));
+  )).add("close single", () => {
+    function Parent({ children, ...props }) {
+      const [t, setToast] = useState()
+      return <div>{children(t, setToast)}</div>;
+    }
+    return (<Parent>
+      {(t, setToast) => (
+        <div>
+        <button
+          onClick={() => {
+            setToast(toast.notify(
+              "Test",
+              { duration: null, position: "top-left" }
+            ));
+          }}
+        >
+          Notify
+        </button>
+
+      <button onClick={() => toast.close(t.id, t.position)}>close previous</button>
+      </div>)
+        }
+    </Parent>)
+  });

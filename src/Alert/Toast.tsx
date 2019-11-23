@@ -1,7 +1,7 @@
 import * as ReactDOM from "react-dom";
 import * as React from "react";
 import ToastManager, { MessageOptionalOptions } from "./ToastManager";
-import { MessageProp } from "./Message";
+import { MessageProp, PositionsType } from "./Message";
 
 const isBrowser =
   typeof window !== "undefined" && typeof window.document !== "undefined";
@@ -10,6 +10,7 @@ const PORTAL_ID = "react-toast";
 class Toaster {
   createNotification?: Function;
   removeAll?: Function;
+  closeToast?: Function;
 
   constructor() {
     if (!isBrowser) {
@@ -43,16 +44,23 @@ class Toaster {
     }
   };
 
-  bindNotify = (fn: Function, removeAll: Function) => {
+  bindNotify = (fn: Function, removeAll: Function, closeToast: Function) => {
     this.createNotification = fn;
     this.removeAll = removeAll;
+    this.closeToast = closeToast;
   };
 
   notify = (message: MessageProp, options: MessageOptionalOptions = {}) => {
     if (this.createNotification) {
-      this.createNotification(message, options);
+      return this.createNotification(message, options);
     }
   };
+
+  close = (id: number, position: PositionsType) => {
+    if(this.closeToast){
+      this.closeToast(id, position);
+    }
+  }
 }
 
 export default Toaster;
