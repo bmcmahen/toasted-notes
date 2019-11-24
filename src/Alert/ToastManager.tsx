@@ -8,7 +8,7 @@ import {
 } from "./Message";
 
 interface Props {
-  notify: (fn: Function, closeAll: Function) => void;
+  notify: (fn: Function, closeAll: Function, close: Function) => void;
 }
 
 export interface MessageOptionalOptions {
@@ -48,7 +48,7 @@ export default class ToastManager extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    props.notify(this.notify, this.closeAll);
+    props.notify(this.notify, this.closeAll, this.closeToast);
   }
 
   notify = (message: MessageProp, options: MessageOptionalOptions) => {
@@ -67,6 +67,7 @@ export default class ToastManager extends React.Component<Props, State> {
           : [...prev[position], toast]
       };
     });
+    return {id: toast.id, position: toast.position};
   };
 
   closeAll = () => {
