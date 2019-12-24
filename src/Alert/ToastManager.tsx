@@ -67,14 +67,15 @@ export default class ToastManager extends React.Component<Props, State> {
           : [...prev[position], toast]
       };
     });
-    return {id: toast.id, position: toast.position};
+    return { id: toast.id, position: toast.position };
   };
 
   closeAll = () => {
-    Object.keys(this.state).forEach((pos: Keys) => {
-      const position = this.state[pos] as any;
+    Object.keys(this.state).forEach(pos => {
+      const p = pos as keyof State;
+      const position = this.state[p];
       position.forEach((toast: any) => {
-        this.closeToast(toast.id, pos);
+        this.closeToast(toast.id, p);
       });
     });
   };
