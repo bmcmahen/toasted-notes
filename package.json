@@ -14,7 +14,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@reach/alert": "^0.1.2",
+    "@reach/alert": "^0.10.0",
     "@types/react": "^16.8.10",
     "@types/react-dom": "^16.8.3"
   },
