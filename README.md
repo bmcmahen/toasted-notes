@@ -72,7 +72,8 @@ It also accepts options.
 ```javascript
 toaster.notify("Hello world", {
   position: "bottom-left", // top-left, top, top-right, bottom-left, bottom, bottom-right
-  duration: null // This notification will not automatically close
+  duration: null, // This notification will not automatically close
+  className: "is--danger" // Custom className to be passed to the toast if you're using the string version
 });
 ```
 

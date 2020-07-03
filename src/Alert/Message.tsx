@@ -43,6 +43,7 @@ export interface MessageOptions {
   onRequestClose: () => void;
   showing: boolean;
   position: PositionsType;
+  className?: string;
 }
 
 interface Props extends MessageOptions {
@@ -58,7 +59,8 @@ export const Message = ({
   position,
   onRequestRemove,
   requestClose = false,
-  duration = 30000
+  duration = 30000,
+  className = '',
 }: Props) => {
   const container = React.useRef<HTMLDivElement | null>(null);
   const [timeout, setTimeout] = React.useState(duration);
@@ -119,7 +121,7 @@ export const Message = ({
 
   function renderMessage() {
     if (typeof message === "string" || React.isValidElement(message)) {
-      return <Alert id={id} title={message} onClose={close} />;
+      return <Alert id={id} title={message} onClose={close} className={className} />;
     }
 
     if (typeof message === "function") {

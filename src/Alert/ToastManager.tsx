@@ -15,6 +15,7 @@ export interface MessageOptionalOptions {
   type?: MessageType;
   duration?: number | null;
   position?: PositionsType;
+  className?: string;
 }
 
 interface ToastArgs extends MessageOptions {
@@ -101,7 +102,8 @@ export default class ToastManager extends React.Component<Props, State> {
       duration:
         typeof options.duration === "undefined" ? 5000 : options.duration,
       onRequestRemove: () => this.removeToast(String(id), position),
-      type: options.type
+      type: options.type,
+      className: options.className,
     };
   };
 
