@@ -91,6 +91,19 @@ const CustomNotificationWithTheme = withTheme(CustomNotification);
 toaster.notify(() => <CustomNotificationWithTheme title="I am pretty" />);
 ```
 
+## Custom root element
+
+By default all toasts will be rendered inside a `<div id="react-toast" />` appended dynamically to `<body>`.
+
+You can control where you want to append this element by using the `setRoot` API:
+
+```
+const toastRoot = document.querySelector("main");
+
+toaster.setRoot(toastRoot);
+toaster.notify("Hello World from custom root");
+```
+
 ## Contributors
 
 - [Einar Löve](https://github.com/einarlove)

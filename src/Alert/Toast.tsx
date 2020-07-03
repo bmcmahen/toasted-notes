@@ -12,8 +12,10 @@ class Toaster {
   removeAll?: Function;
   closeToast?: Function;
 
-  constructor() {
-    if (!isBrowser) {
+  private didInit: boolean = false;
+
+  setRoot = (root: HTMLElement) => {
+    if (!isBrowser || this.didInit) {
       return;
     }
 
@@ -26,8 +28,9 @@ class Toaster {
       const el = document.createElement("div");
       el.id = PORTAL_ID;
       el.className = "Toaster";
-      if (document.body != null) {
-        document.body.appendChild(el);
+      if (root != null) {
+        root.appendChild(el);
+        this.didInit = true
       }
       portalElement = el;
     }
@@ -51,13 +54,17 @@ class Toaster {
   };
 
   notify = (message: MessageProp, options: MessageOptionalOptions = {}) => {
+    if (!this.didInit && isBrowser) {
+      this.setRoot(document.body)
+    }
+
     if (this.createNotification) {
       return this.createNotification(message, options);
     }
   };
 
   close = (id: number, position: PositionsType) => {
-    if(this.closeToast){
+    if (this.closeToast) {
       this.closeToast(id, position);
     }
   }
