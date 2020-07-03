@@ -4,11 +4,12 @@ interface Props {
   id: string;
   title: React.ReactNode | string;
   onClose: () => void;
+  className?: string;
 }
 
-const Alert = ({ id, title, onClose }: Props) => {
+const Alert = ({ id, title, onClose, className = '' }: Props) => {
   return (
-    <div id={id} className="Toaster__alert">
+    <div id={id} className={`Toaster__alert ${className}`}>
       {typeof title === "string" ? (
         <div className="Toaster__alert_text">{title}</div>
       ) : (
