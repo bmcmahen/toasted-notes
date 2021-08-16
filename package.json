@@ -37,7 +37,10 @@
   "author": "Ben McMahen <ben.mcmahen@gmail.com>",
   "homepage": "https://github.com/bmcmahen/toasted-notes",
   "license": "MIT",
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bmcmahen/toasted-notes.git"
+  },
   "keywords": [
     "react-component",
     "toast",
